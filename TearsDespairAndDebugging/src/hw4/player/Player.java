@@ -11,6 +11,7 @@ public class Player {
 	public Player(Row row, Cell cell) {
 		setCurrentRow(row);
 		setCurrentCell(cell);
+		cell.setHasPlayer(true);
 	}
 
 	public Row getCurrentRow() {
@@ -28,7 +29,7 @@ public class Player {
 	public void setCurrentCell(Cell currentCell) {
 		this.currentCell = currentCell;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Player [currentCell=" + currentCell + ", currentRow=" + currentRow + "]";
