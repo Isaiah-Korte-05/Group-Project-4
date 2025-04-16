@@ -6,6 +6,7 @@ public class Player {
 	
 	private Row currentRow;
 	private Cell currentCell;
+	private boolean hasExited = false;
 	
 	public Player(Row row, Cell cell) {
 		setCurrentRow(row);
@@ -31,6 +32,14 @@ public class Player {
 	@Override
 	public String toString() {
 		return "Player [currentCell=" + currentCell + ", currentRow=" + currentRow + "]";
+	}
+
+	public boolean hasExited() {
+		return hasExited;
+	}
+
+	public void setHasExited(boolean hasExited) {
+		this.hasExited = hasExited;
 	}
 
 }
