@@ -79,14 +79,18 @@ public class Game {
 			}
 			// Player has space to move left and is not on grid's left edge
 			if (currentCell.getLeft() == CellComponents.APERTURE && cellIndex > 0) {
+				player.getCurrentCell().setHasPlayer(false);
 				player.setCurrentCell(row.get(rowIndex).getCells().get(cellIndex - 1));
+				player.getCurrentCell().setHasPlayer(true);
 				return true;
 			}
 			break;
 		case RIGHT:
 			// Player has space to move right and is not on grid's right edge
 			if (currentCell.getRight() == CellComponents.APERTURE && cellIndex < row.get(rowIndex).getCells().size() - 1) {
+				player.getCurrentCell().setHasPlayer(false);
 				player.setCurrentCell(row.get(rowIndex).getCells().get(cellIndex + 1));
+				player.getCurrentCell().setHasPlayer(true);
 				return true;
 			}
 			break;
@@ -95,7 +99,9 @@ public class Game {
 			if (currentCell.getUp() == CellComponents.APERTURE && rowIndex > 0) {
 				Row nextRow = row.get(rowIndex - 1);
 				player.setCurrentRow(nextRow);
+				player.getCurrentCell().setHasPlayer(false);
 				player.setCurrentCell(nextRow.getCells().get(cellIndex));
+				player.getCurrentCell().setHasPlayer(true);
 				return true;
 			}
 			break;
@@ -104,7 +110,9 @@ public class Game {
 			if (currentCell.getDown() == CellComponents.APERTURE && rowIndex < row.size() - 1) {
 				Row nextRow = row.get(rowIndex + 1);
 				player.setCurrentRow(nextRow);
+				player.getCurrentCell().setHasPlayer(false);
 				player.setCurrentCell(nextRow.getCells().get(cellIndex));
+				player.getCurrentCell().setHasPlayer(true);
 				return true;
 			}
 			break;
@@ -177,6 +185,11 @@ public class Game {
 	private CellComponents getRandomCellComponent() {
 		Random rand = new Random();
 		return rand.nextBoolean() ? CellComponents.WALL : CellComponents.APERTURE;
+	}
+	
+	public void printBoard() {
+		grid.printGrid();
+		System.out.println();
 	}
 
 }

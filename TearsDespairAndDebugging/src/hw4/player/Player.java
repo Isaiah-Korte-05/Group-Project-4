@@ -25,6 +25,7 @@ public class Player {
 	public Player(Row row, Cell cell) {
 		setCurrentRow(row);
 		setCurrentCell(cell);
+		cell.setHasPlayer(true);
 	}
 
 	/**

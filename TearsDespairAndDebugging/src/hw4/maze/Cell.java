@@ -6,6 +6,7 @@ public class Cell {
 	private CellComponents right;
 	private CellComponents up;
 	private CellComponents down;
+	private boolean hasPlayer;
 	
 	/**
 	 * Parameterized constructor to set the states of the components of this cell
@@ -53,6 +54,11 @@ public class Cell {
 		return down;
 	}
 	
+	
+	public boolean getHasPlayer() {
+		return hasPlayer;
+	}
+	
 	/**
 	 * Setter for the class member holding the CellComponents enum of the left component of the cell
 	 * @param left The new state for left CellComponent enum
@@ -87,6 +93,10 @@ public class Cell {
 	public void setDown(CellComponents down) {
 		if (down != null) { this.down = down; }
 		else { this.down = CellComponents.WALL; }
+	}
+	
+	public void setHasPlayer(boolean hasPlayer) {
+		this.hasPlayer = hasPlayer;
 	}
 
 	/**
