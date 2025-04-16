@@ -33,7 +33,51 @@ public class Game {
 	
 	public boolean play(Movement movement, Player player) {
 		if (movement == null || player == null) { return false; }
-		return true;
+		
+		if (player.hasExited()) { return false; }
+		
+		ArrayList<Row> row = grid.getRows();
+		int rowIndex = row.indexOf(player.getCurrentRow());
+		int cellIndex = player.getCurrentRow().getCells().indexOf(player.getCurrentCell());
+		if (rowIndex == -1 || cellIndex == -1) { return false; }
+		
+		Cell currentCell = player.getCurrentCell();
+		
+		switch(movement) {
+		case LEFT:
+			if (currentCell.getLeft() == CellComponents.EXIT) {
+				player.setHasExited(true);
+				return true;
+			}
+			if (currentCell.getLeft() == CellComponents.APERTURE && cellIndex > 0) {
+				player.setCurrentCell(row.get(rowIndex).getCells().get(cellIndex - 1));
+				return true;
+			}
+			break;
+		case RIGHT:
+			if (currentCell.getRight() == CellComponents.APERTURE && cellIndex < row.get(rowIndex).getCells().size() - 1) {
+				player.setCurrentCell(row.get(rowIndex).getCells().get(cellIndex + 1));
+				return true;
+			}
+			break;
+		case UP:
+			if (currentCell.getUp() == CellComponents.APERTURE && rowIndex > 0) {
+				Row nextRow = row.get(rowIndex - 1);
+				player.setCurrentRow(nextRow);
+				player.setCurrentCell(nextRow.getCells().get(cellIndex));
+				return true;
+			}
+			break;
+		case DOWN:
+			if (currentCell.getDown() == CellComponents.APERTURE && rowIndex < row.size() - 1) {
+				Row nextRow = row.get(rowIndex + 1);
+				player.setCurrentRow(nextRow);
+				player.setCurrentCell(nextRow.getCells().get(cellIndex));
+				return true;
+			}
+			break;
+		}
+		return false;
 	}
 	
 	public Grid createRandomGrid(int size) {
