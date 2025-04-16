@@ -7,6 +7,8 @@ public class Cell {
 	private CellComponents up;
 	private CellComponents down;
 	
+	private boolean hasPlayer;
+	
 	public Cell(CellComponents left, CellComponents right, CellComponents up, CellComponents down) {
 		this.left = left;
 		this.right = right;
@@ -30,6 +32,10 @@ public class Cell {
 		return down;
 	}
 	
+	public boolean getHasPlayer() {
+		return hasPlayer;
+	}
+	
 	public void setLeft(CellComponents left) {
 		if (left != null) { this.left = left; }
 		else { this.left = CellComponents.WALL; }
@@ -48,6 +54,10 @@ public class Cell {
 	public void setDown(CellComponents down) {
 		if (down != null) { this.down = down; }
 		else { this.down = CellComponents.WALL; }
+	}
+	
+	public void setHasPlayer(boolean hasPlayer) {
+		this.hasPlayer = hasPlayer;
 	}
 
 	@Override
