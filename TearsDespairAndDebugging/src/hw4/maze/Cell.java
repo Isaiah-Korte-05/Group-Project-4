@@ -54,5 +54,25 @@ public class Cell {
 	public String toString() {
 		return "Cell [left=" + left + ", right=" + right + ", up=" + up + ", down=" + down + "]";
 	}
+	
+	public boolean hasAperture() {
+		if (left == CellComponents.APERTURE ||
+			right == CellComponents.APERTURE ||
+			up == CellComponents.APERTURE ||
+			down == CellComponents.APERTURE) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean hasWall() {
+		if (left == CellComponents.WALL ||
+			right == CellComponents.WALL ||
+			up == CellComponents.WALL ||
+			down == CellComponents.WALL) {
+			return true;
+		}
+		return false;
+	}
 
 }
