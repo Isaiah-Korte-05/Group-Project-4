@@ -142,30 +142,32 @@ public class Game {
 				CellComponents up;
 				CellComponents down;
 				
-				// Sets left component to exit if cell is in the correct row, or random CellComponents otherwise
+				// If first cell,
 				if (cellIndex == 0) {
-					left = rowIndex == exitRowIndex ? CellComponents.EXIT : getRandomCellComponent();
+					// If random exit row matches, set as exit
+					// Else set randomly
+					left = (rowIndex == exitRowIndex) ? CellComponents.EXIT : getRandomCellComponent();
 				}
-				// Sets left component to random CellComponents
+				// Else set to same as right in left cell
 				else {
 					left = cells.get(cellIndex - 1).getRight();
 				}
-				// Sets 
+				// If in first row, set randomly
 				if (rowIndex == 0) {
 					up = getRandomCellComponent();
 				}
-				// Sets
+				// Else set to same as down in above row
 				else {
 					up = rows.get(rowIndex - 1).getCells().get(cellIndex).getDown();
 				}
-				// Sets right and down components to random CellComponents
+				// Right and down set randomly
 				right = getRandomCellComponent();
 				down = getRandomCellComponent();
 				
 				// Creates new Cell
 				Cell cell = new Cell(left, right, up, down);
 				
-				// While the Cell does not have at least one aperture and one wall, re-randomly set CellComponents
+				// While Cell does not have at least one aperture and one wall, re-randomly set CellComponents
 				while (!(cell.hasAperture() && cell.hasWall())) {
 					right = getRandomCellComponent();
 					down = getRandomCellComponent();
