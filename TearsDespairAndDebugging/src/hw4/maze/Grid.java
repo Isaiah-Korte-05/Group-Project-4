@@ -27,11 +27,11 @@ public class Grid {
 		System.out.println("---------------\n CURRENT GRID\n---------------");
 		for(int i = 0; i < rows.size(); i++) {
 			for(int j = 0; j < rows.get(i).getCells().size(); j++) {
-				if(rows.get(i).getCells().get(j).getLeft() == CellComponents.EXIT) {
-					System.out.print(" E ");
-				}
-				else if(rows.get(i).getCells().get(j).getHasPlayer()) {
+				if(rows.get(i).getCells().get(j).getHasPlayer()) {
 					System.out.print("[A]");
+				}
+				else if(rows.get(i).getCells().get(j).getLeft() == CellComponents.EXIT) {
+					System.out.print(" E ");
 				}
 				else {
 					System.out.print(" S ");
